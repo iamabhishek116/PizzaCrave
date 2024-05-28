@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pizza Ordering System</title>
+</head>
+<body>
+    <h1>Pizza Menu</h1>
+    <ul>
+        <li th:each="pizza : ${pizzas}">
+            <span th:text="${pizza.name}"></span> - 
+            <span th:text="${pizza.price}"></span>
+            <button th:onclick="'orderPizza(' + ${pizza.id} + ')'">Order</button>
+        </li>
+    </ul>
+
+    <form id="payment-form" action="/api/payments" method="post">
+        <input type="hidden" name="token" id="token">
+        <input type="hidden" name="amount" id="amount">
+        <button type="submit">Pay</button>
+    </form>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('your-publishable-key');
+        var elements = stripe.elements();
+        
+        // Add Stripe Elements and handle form submission
+    </script>
+</body>
+</html>
